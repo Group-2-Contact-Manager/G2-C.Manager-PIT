@@ -118,3 +118,88 @@ def delete_contact():
 
     except Exception as e:
         messagebox.showerror("Delete Error", str(e))
+
+
+def update_contact():
+    try:
+        selected = table.focus()
+        if not selected:
+            messagebox.showwarning("Warning", "Select a contact first!")
+            return
+
+
+        values = table.item(selected)["values"]
+        if not values or values[1] == "No contact found":
+            return
+
+
+        index = int(values[0]) - 1
+        contacts = load_contacts()
+
+
+        if 0 <= index < len(contacts):
+            contacts[index] = [
+                name_entry.get(),
+                phone_entry.get(),
+                address_entry.get()
+            ]
+
+
+        save_contacts(contacts)
+        refresh_table()
+        clear_fields()
+
+
+        status_label.config(text="Updated successfully.")
+
+
+    except Exception as e:
+        messagebox.showerror("Update Error", str(e))
+
+
+def on_select(event):
+    try:
+        selected = table.focus()
+        if not selected:
+            return
+
+
+        values = table.item(selected)["values"]
+
+
+        if not values or values[1] == "No contact found":
+            return
+
+
+        name_entry.delete(0, tk.END)
+        phone_entry.delete(0, tk.END)
+        address_entry.delete(0, tk.END)
+
+
+        name_entry.insert(0, values[1])
+        phone_entry.insert(0, values[2])
+        address_entry.insert(0, values[3])
+
+
+    except Exception as e:
+        messagebox.showerror("Select Error", str(e))
+
+
+def search_contact(event=None):
+    query = search_entry.get().lower()
+    contacts = load_contacts()
+
+
+    filtered = [
+        c for c in contacts
+        if query in c[0].lower() or query in c[1]
+    ]
+
+
+    refresh_table(filtered)
+
+
+def clear_fields():
+    name_entry.delete(0, tk.END)
+    phone_entry.delete(0, tk.END)
+    address_entry.delete(0, tk.END)
