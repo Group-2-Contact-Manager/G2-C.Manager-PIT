@@ -203,3 +203,69 @@ def clear_fields():
     name_entry.delete(0, tk.END)
     phone_entry.delete(0, tk.END)
     address_entry.delete(0, tk.END)
+
+root = tk.Tk()
+root.title("CONTACT MANAGER")
+root.geometry("1050x650")
+root.configure(bg="#0f172a")
+
+
+left = tk.Frame(root, bg="#111827", width=300)
+left.pack(side="left", fill="y")
+
+
+tk.Label(
+    left,
+    text="CONTACT MANAGER",
+    bg="#111827",
+    fg="white",
+    font=("Segoe UI", 20, "bold")
+).pack(pady=15, padx=15)
+
+
+tk.Label(left, text="FULL NAME", bg="#111827", fg="#9ca3af").pack(anchor="w", padx=20)
+name_entry = tk.Entry(left, bg="#1f2937", fg="white", insertbackground="white",
+                      font=("Segoe UI", 11), width=28)
+name_entry.pack(padx=20, pady=4, fill="x", ipady=3)
+
+
+tk.Label(left, text="PHONE NUMBER", bg="#111827", fg="#9ca3af").pack(anchor="w", padx=20)
+phone_entry = tk.Entry(left, bg="#1f2937", fg="white", insertbackground="white",
+                       font=("Segoe UI", 11), width=28)
+phone_entry.pack(padx=20, pady=4, fill="x", ipady=3)
+
+
+tk.Label(left, text="ADDRESS", bg="#111827", fg="#9ca3af").pack(anchor="w", padx=20)
+address_entry = tk.Entry(left, bg="#1f2937", fg="white", insertbackground="white",
+                         font=("Segoe UI", 11), width=28)
+address_entry.pack(padx=20, pady=4, fill="x", ipady=3)
+
+
+btn_font = ("Segoe UI", 11)
+
+
+tk.Button(left, text="Add Contact", bg="#3b82f6", fg="white",
+          font=btn_font, command=add_contact)\
+.pack(padx=20, pady=10, fill="x", ipady=2)
+
+
+tk.Button(left, text="Update Contact", bg="#8b5cf6", fg="white",
+          font=btn_font, command=update_contact)\
+.pack(padx=20, pady=10, fill="x", ipady=2)
+
+
+tk.Button(left, text="Delete Contact", bg="#ef4444", fg="white",
+          font=btn_font, command=delete_contact)\
+.pack(padx=20, pady=10, fill="x", ipady=2)
+
+
+tk.Button(left, text="Clear Fields", bg="#8f887e", fg="white", font=btn_font, command=clear_fields)\
+.pack(padx=20, pady=10, fill="x", ipady=2)
+
+
+right = tk.Frame(root, bg="#0f172a")
+right.pack(side="right", expand=True, fill="both")
+
+
+header = tk.Frame(right, bg="#0f172a")
+header.pack(fill="x", padx=15, pady=8)
