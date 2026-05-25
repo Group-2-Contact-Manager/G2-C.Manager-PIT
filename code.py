@@ -269,3 +269,74 @@ right.pack(side="right", expand=True, fill="both")
 
 header = tk.Frame(right, bg="#0f172a")
 header.pack(fill="x", padx=15, pady=8)
+
+
+tk.Label(header, text="ALL CONTACTS", bg="#0f172a", fg="grey", font=("Segoe UI", 11, "bold")
+).pack(side="left", padx=10)
+
+
+search_frame = tk.Frame(header, bg="#111827")
+search_frame.pack(side="right", padx=5)
+
+
+search_label = tk.Label(search_frame, text="🔍", bg="#111827", fg="#d1d5db", font=("Segoe UI", 11))
+search_label.pack(side="left", padx=(8, 4))
+
+
+search_text = tk.Label(search_frame, text="Search...", bg="#111827", fg="#9ca3af", font=("Segoe UI", 11))
+search_text.pack(side="left", padx=(5, 8), pady=4, ipady=2)
+
+
+search_entry = tk.Entry(search_frame, width=25, font=("Segoe UI", 11))
+search_entry.pack(side="left", ipady=3)
+search_entry.bind("<KeyRelease>", search_contact)
+
+
+status_label = tk.Label(right, text="", bg="#0f172a", fg="#10b981", font=("Segoe UI", 9))
+status_label.pack(side="bottom", anchor="w", pady=3, padx=12, ipady=2)
+
+
+style = ttk.Style()
+style.theme_use("default")
+
+
+style.configure("Treeview",
+                background="#111827",
+                foreground="white",
+                fieldbackground="#111827")
+
+
+style.configure("Treeview.Heading",
+                background="#1f2937",
+                foreground="white")
+
+
+columns = ("#", "Name", "Phone Number", "Address")
+
+
+table = ttk.Treeview(right, columns=columns, show="headings", height=25)
+
+
+for col in columns:
+    table.heading(col, text=col)
+
+
+table.column("#", width=50, anchor="center")
+table.column("Name", width=200)
+table.column("Phone Number", width=170)
+table.column("Address", width=260)
+
+
+style.configure("Treeview", rowheight=28)
+
+
+table.pack(padx=15, pady=8, fill="both", expand=True)
+
+
+table.bind("<<TreeviewSelect>>", on_select)
+
+
+refresh_table()
+
+
+root.mainloop()
