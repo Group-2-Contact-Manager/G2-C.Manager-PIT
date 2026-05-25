@@ -44,9 +44,7 @@ def refresh_table(data=None):
 
 def add_contact():
     try:
-        name = name_entry.get().strip()
-        phone = phone_entry.get().strip()
-        address = address_entry.get().strip()
+        name, phone, address = [e.get().strip() for e in (name_entry, phone_entry, address_entry)]
 
         if not name or not phone or not address:
             messagebox.showwarning("Error", "Please fill all fields!")
@@ -216,7 +214,7 @@ right.pack(side="right", expand=True, fill="both")
 header = tk.Frame(right, bg="#83004f")
 header.pack(fill="x", padx=15, pady=8)
 
-tk.Label(header, text="ALL CONTACTS", bg="#83004f", fg="white", font=("Segoe UI", 11, "bold")).pack(side="left", padx=10)
+tk.Label(header, text="VIEW ALL CONTACTS", bg="#83004f", fg="white", font=("Segoe UI", 11, "bold")).pack(side="left", padx=10)
 
 search_frame = tk.Frame(header, bg="#83004f")
 search_frame.pack(side="right", padx=5)
@@ -231,7 +229,7 @@ search_entry = tk.Entry(search_frame, width=25, font=("Segoe UI", 11))
 search_entry.pack(side="left", ipady=3)
 search_entry.bind("<KeyRelease>", search_contact)
 
-status_label = tk.Label(right, text="", bg="#83004f", fg="#48ffbc", font=("Segoe UI", 9))
+status_label = tk.Label(right, text="", bg="#83004f", fg="#ffc2ee", font=("Segoe UI", 9))
 status_label.pack(side="bottom", anchor="w", pady=3, padx=12, ipady=2)
 
 style = ttk.Style()
@@ -241,14 +239,14 @@ style.configure("Treeview", background="#fcbce2", foreground="black", fieldbackg
 
 style.configure("Treeview.Heading", background="#83004f", foreground="white")
 
-columns = ("#", "Name", "Phone Number", "Address")
+columns = ("No.", "Name", "Phone Number", "Address")
 
 table = ttk.Treeview(right, columns=columns, show="headings", height=25)
 
 for col in columns:
     table.heading(col, text=col)
 
-table.column("#", width=50, anchor="center")
+table.column("No.", width=50, anchor="center")
 table.column("Name", width=200)
 table.column("Phone Number", width=170)
 table.column("Address", width=260)
