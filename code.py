@@ -206,9 +206,9 @@ tk.Button(left, text="Delete Contact", bg="#ef4444", fg="white", font=btn_font, 
 
 tk.Button(left, text="Clear Fields", bg="#8f887e", fg="white", font=btn_font, command=clear_fields).pack(padx=20, pady=10, fill="x", ipady=2)
 
-tk.Button(left, text="Call Contact", bg="#22c55e", fg="white", font=btn_font, command=call_contact).pack(padx=100, pady=2, fill="x", ipady=2)
+tk.Button(left, text="Call Contact", bg="#22c55e", fg="white", font=btn_font, command=call_contact).pack(padx=75, pady=5, fill="x", ipady=5)
 
-tk.Button(left, text="Message Contact", bg="#06b6d4", fg="white", font=btn_font, command=message_contact).pack(padx=100, pady=2, fill="x", ipady=2)
+tk.Button(left, text="Message Contact", bg="#06b6d4", fg="white", font=btn_font, command=message_contact).pack(padx=75, pady=5, fill="x", ipady=5)
 
 right = tk.Frame(root, bg="#83004f")
 right.pack(side="right", expand=True, fill="both")
